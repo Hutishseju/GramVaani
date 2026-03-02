@@ -9,7 +9,7 @@ app = FastAPI()
 @app.get("/forecast")
 def forecast(crop: str = "wheat"):
     
-    forecast_data = generate_forecast("../data/mandi_sample.csv")
+    forecast_data = generate_forecast("mandi_sample.csv")
 
     advisory = generate_advisory(forecast_data)
 
