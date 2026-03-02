@@ -1,24 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Login from "./Login";
+import Dashboard from "./Dashboard";
+import "./App.css";
 
 function App() {
-  const [data, setData] = useState(null);
 
-  useEffect(() => {
-    fetch("YOUR_API_URL/forecast?crop=wheat")
-      .then(res => res.json())
-      .then(setData);
-  }, []);
+  const [user, setUser] = useState(null);
 
-  if (!data) return <div>Loading...</div>;
+  if (!user) {
+    return <Login setUser={setUser} />;
+  }
 
-  return (
-    <div>
-      <h1>GramVaani Dashboard</h1>
-      <h2>Crop: {data.crop}</h2>
-      <p>Predicted Price: ₹{data.forecast.predicted_price}</p>
-      <p>Advisory: {data.advisory}</p>
-    </div>
-  );
+  return <Dashboard user={user} />;
 }
 
 export default App;

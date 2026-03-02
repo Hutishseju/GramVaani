@@ -7,16 +7,15 @@ from mangum import Mangum
 app = FastAPI()
 
 @app.get("/forecast")
-def forecast(crop: str = "wheat"):
-    
-    forecast_data = generate_forecast("mandi_sample.csv")
+def forecast(crop: str, state: str):
+
+    forecast_data = generate_forecast(crop, state)
 
     advisory = generate_advisory(forecast_data)
 
-    store_forecast(crop, forecast_data, advisory)
+    store_forecast(forecast_data, advisory)
 
     return {
-        "crop": crop,
         "forecast": forecast_data,
         "advisory": advisory
     }
