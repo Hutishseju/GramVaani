@@ -8,6 +8,15 @@ body {
   padding: 20px;
 }
 
+.topbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectors {
+  margin: 20px 0;
+}
+
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -21,29 +30,15 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.advisory {
-  margin-top: 20px;
-}
-
-.login-container {
-  text-align: center;
-  padding: 50px;
-}
-
 button {
-  margin: 10px;
+  margin: 5px;
   padding: 8px 15px;
   background: #2e7d32;
   color: white;
   border: none;
-  cursor: pointer;
 }
 
-button:hover {
-  background: #1b5e20;
-}
-
-@media (max-width: 768px) {
+@media(max-width:768px){
   .dashboard-grid {
     grid-template-columns: 1fr;
   }

@@ -6,8 +6,8 @@ const geoUrl =
 function MapView() {
   return (
     <div className="card">
-      <h2>🗺 India State View</h2>
-      <ComposableMap projection="geoMercator" width={400} height={400}>
+      <h3>India Map</h3>
+      <ComposableMap width={400} height={400}>
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo) => (

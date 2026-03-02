@@ -11,11 +11,7 @@ def store_forecast(data, advisory):
             "crop": data["crop"],
             "state": data["state"],
             "timestamp": str(datetime.utcnow()),
-            "predicted_price": data["predicted_price"],
-            "rainfall": data["rainfall_mm"],
-            "temperature": data["temperature_c"],
-            "humidity": data["humidity_percent"],
-            "risk_score": data["weather_risk_score"],
+            "predicted_price": str(data["predicted_price"]),
             "advisory": advisory
         }
     )

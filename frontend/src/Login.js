@@ -1,12 +1,7 @@
 import { useState } from "react";
 
 function Login({ setUser }) {
-
   const [role, setRole] = useState("Farmer");
-
-  const handleLogin = () => {
-    setUser({ role });
-  };
 
   return (
     <div className="login-container">
@@ -17,7 +12,9 @@ function Login({ setUser }) {
         <option>Rural Cooperative</option>
       </select>
 
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={() => setUser({ role })}>
+        Enter Dashboard
+      </button>
     </div>
   );
 }

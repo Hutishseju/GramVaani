@@ -4,14 +4,11 @@ import Dashboard from "./Dashboard";
 import "./App.css";
 
 function App() {
-
   const [user, setUser] = useState(null);
 
-  if (!user) {
-    return <Login setUser={setUser} />;
-  }
-
-  return <Dashboard user={user} />;
+  return user
+    ? <Dashboard user={user} />
+    : <Login setUser={setUser} />;
 }
 
 export default App;

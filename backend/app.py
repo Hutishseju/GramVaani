@@ -1,10 +1,16 @@
 from fastapi import FastAPI
+from mangum import Mangum
 from forecast import generate_forecast
 from bedrock import generate_advisory
 from db import store_forecast
-from mangum import Mangum
 
 app = FastAPI()
+
+
+@app.get("/")
+def root():
+    return {"message": "GramVaani API is running"}
+
 
 @app.get("/forecast")
 def forecast(crop: str, state: str):
@@ -19,5 +25,6 @@ def forecast(crop: str, state: str):
         "forecast": forecast_data,
         "advisory": advisory
     }
+
 
 handler = Mangum(app)

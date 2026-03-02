@@ -1,53 +1,85 @@
 import { useState } from "react";
+import { crops, states } from "./data";
+import { translations } from "./translations";
 import ChartView from "./ChartView";
 import MapView from "./MapView";
-import { translations } from "./translations";
+
+const API_BASE = process.env.REACT_APP_API_URL;
 
 function Dashboard({ user }) {
 
   const [lang, setLang] = useState("en");
   const t = translations[lang];
 
+  const [selectedCrop, setSelectedCrop] = useState("Wheat");
+  const [selectedState, setSelectedState] = useState("Gujarat");
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const fetchData = async () => {
-    const response = await fetch("YOUR_API_URL/forecast?crop=Wheat&state=Gujarat");
-    const result = await response.json();
-    setData(result);
+  const fetchForecast = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `${API_BASE}/forecast?crop=${selectedCrop}&state=${selectedState}`
+      );
+      const result = await res.json();
+      setData(result);
+    } catch (err) {
+      alert("API Error");
+    }
+    setLoading(false);
   };
 
   return (
     <div className="container">
 
-      <div className="top-bar">
+      <div className="topbar">
         <button onClick={() => setLang("en")}>EN</button>
-        <button onClick={() => setLang("hi")}>हिंदी</button>
-        <span>Role: {user.role}</span>
+        <button onClick={() => setLang("hi")}>HI</button>
+        <span>{t.role}: {user.role}</span>
       </div>
 
       <h1>{t.title}</h1>
 
-      <button onClick={fetchData}>{t.forecast}</button>
+      <div className="selectors">
+        <select value={selectedCrop}
+          onChange={(e) => setSelectedCrop(e.target.value)}>
+          {crops.map(crop => (
+            <option key={crop}>{crop}</option>
+          ))}
+        </select>
+
+        <select value={selectedState}
+          onChange={(e) => setSelectedState(e.target.value)}>
+          {states.map(state => (
+            <option key={state}>{state}</option>
+          ))}
+        </select>
+
+        <button onClick={fetchForecast}>
+          {t.forecast}
+        </button>
+      </div>
+
+      {loading && <p>Loading...</p>}
 
       {data && (
         <>
           <div className="dashboard-grid">
-
             <div className="card">
               <h2>₹ {data.forecast.predicted_price}</h2>
-              <p>{t.rainfall}: {data.forecast.rainfall_mm}</p>
-              <p>{t.temperature}: {data.forecast.temperature_c}</p>
-              <p>{t.humidity}: {data.forecast.humidity_percent}</p>
-              <p>{t.risk}: {data.forecast.weather_risk_score}</p>
+              <p>Rainfall: {data.forecast.rainfall_mm} mm</p>
+              <p>Temperature: {data.forecast.temperature_c} °C</p>
+              <p>Humidity: {data.forecast.humidity_percent}%</p>
+              <p>Risk Score: {data.forecast.weather_risk_score}</p>
             </div>
 
-            <ChartView forecast={data.forecast} />
+            <ChartView price={data.forecast.predicted_price} />
             <MapView />
-
           </div>
 
           <div className="card advisory">
-            <h2>{t.advisory}</h2>
+            <h3>{t.advisory}</h3>
             <p>{data.advisory}</p>
           </div>
         </>
