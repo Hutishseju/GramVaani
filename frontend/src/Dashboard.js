@@ -12,21 +12,25 @@ function Dashboard({ user }) {
   const t = translations[lang];
 
   const [selectedCrop, setSelectedCrop] = useState("Wheat");
-  const [selectedState, setSelectedState] = useState("Gujarat");
+  const [selectedState, setSelectedState] = useState("Andhra Pradesh");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const fetchForecast = async () => {
     setLoading(true);
+
     try {
       const res = await fetch(
-        `${API_BASE}/forecast?crop=${selectedCrop}&state=${selectedState}`
+        `${API_BASE}/forecast?crop=${encodeURIComponent(selectedCrop)}&state=${encodeURIComponent(selectedState)}`
       );
+
       const result = await res.json();
       setData(result);
+
     } catch (err) {
       alert("API Error");
     }
+
     setLoading(false);
   };
 
@@ -34,25 +38,28 @@ function Dashboard({ user }) {
     <div className="container">
 
       <div className="topbar">
-        <button onClick={() => setLang("en")}>EN</button>
-        <button onClick={() => setLang("hi")}>HI</button>
+        <div>
+          <button onClick={() => setLang("en")}>EN</button>
+          <button onClick={() => setLang("hi")}>HI</button>
+        </div>
         <span>{t.role}: {user.role}</span>
       </div>
 
       <h1>{t.title}</h1>
 
       <div className="selectors">
+
         <select value={selectedCrop}
           onChange={(e) => setSelectedCrop(e.target.value)}>
           {crops.map(crop => (
-            <option key={crop}>{crop}</option>
+            <option key={crop} value={crop}>{crop}</option>
           ))}
         </select>
 
         <select value={selectedState}
           onChange={(e) => setSelectedState(e.target.value)}>
           {states.map(state => (
-            <option key={state}>{state}</option>
+            <option key={state} value={state}>{state}</option>
           ))}
         </select>
 
@@ -66,6 +73,7 @@ function Dashboard({ user }) {
       {data && (
         <>
           <div className="dashboard-grid">
+
             <div className="card">
               <h2>₹ {data.forecast.predicted_price}</h2>
               <p>Rainfall: {data.forecast.rainfall_mm} mm</p>
@@ -84,7 +92,6 @@ function Dashboard({ user }) {
           </div>
         </>
       )}
-
     </div>
   );
 }
