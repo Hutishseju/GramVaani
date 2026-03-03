@@ -43,3 +43,191 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+/* Full page centering */
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center */
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+/* Card container */
+.login-card {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  width: 400px;
+  max-width: 90%;
+}
+
+/* Logo styling */
+.login-logo {
+  width: 250px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 25px;
+}
+
+/* Controls container */
+.login-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Dropdown styling */
+.login-controls select {
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Button styling */
+.login-controls button {
+  padding: 12px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-controls button:hover {
+  background: #1b5e20;
+}
+
+.logout-btn {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #8e0000;
+}
+
+.risk-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.risk-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.risk-label {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.download-btn {
+  margin-top: 15px;
+  padding: 10px 18px;
+  background: #1565c0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.download-btn:hover {
+  background: #0d47a1;
+}
+
+.pdf-section {
+  background: white;
+  padding: 20px;
+}
+
+.advisory {
+  margin-top: 30px;
+  padding: 25px;
+  background: #f8fafc;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.advisory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.advisory-header h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #1b5e20;
+}
+
+.price-badge {
+  background: linear-gradient(135deg, #2e7d32, #66bb6a);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.advisory-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.advisory-card {
+  display: flex;
+  gap: 15px;
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: 0.3s ease;
+}
+
+.advisory-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.advisory-index {
+  min-width: 35px;
+  height: 35px;
+  background: #2e7d32;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.advisory-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}

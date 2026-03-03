@@ -63,6 +63,7 @@ for state in states:
                 risk_score
             ])
 
+
 df = pd.DataFrame(rows, columns=[
     "date","state","crop","price",
     "rainfall_mm","temperature_c",

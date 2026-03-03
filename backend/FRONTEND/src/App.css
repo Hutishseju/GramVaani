@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f4f6f9;
+}
+
+.container {
+  padding: 20px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectors {
+  margin: 20px 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+button {
+  margin: 5px;
+  padding: 8px 15px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+}
+
+@media(max-width:768px){
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

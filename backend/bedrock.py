@@ -19,7 +19,8 @@ def generate_advisory(data):
         modelId="anthropic.claude-3-sonnet-20240229-v1",  # <-- updated
         body=json.dumps({
             "anthropic_version": "bedrock-2023-05-31",
-            "max_tokens": 200,
+            "max_tokens": 1024,
+            "temperature": 0.5,
             "messages": [
                 {"role": "user", "content": prompt}
             ]
